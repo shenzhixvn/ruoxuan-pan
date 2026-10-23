@@ -237,3 +237,18 @@ $ http://pan.7107.com.cn/app/  与  http://pan.7107.com.cn/api/pan/disk_info
 3. 文件夹暂不支持创建分享（`openShare` 会提示），后端虽然能建，但分享落地页的文件夹行为未验证。
 4. 大文件（>1GB）受账号配额 `panSizeLimit` 限制；单文件分片数较多时上传时间取决于网络。
 5. 用量中心需要遍历目录聚合类型分布，目录极多时会多花几秒（当前演示数据无压力）。
+
+---
+
+## 📦 仓库结构（后端在 `backend/`）
+
+| 目录 | 内容 | 说明 |
+| --- | --- | --- |
+| `src/` `index.html` `vite.config.js` | **前端**（Vue3 + Vite + Pinia + Element Plus） | 本次实训主要开发成果 |
+| `backend/` | **后端**（ModStart / Laravel 5.5 + PHP 7.0 + MySQL 5.6） | 网盘系统后端，详见 `backend/BACKEND.md` |
+| `database/` | 建表 SQL 与数据库设计 | 37 张表 |
+| `docs/` | 接口与开发文档 | — |
+
+> **后端说明**：后端基于 ModStart 二次开发，业务能力集中在 `module/Pan`（文件/目录、分片上传、回收站、配额、分享）。
+> 前端为独立重写，仅通过 `/api` 通信，**未改动后端业务逻辑**。`backend/` 中已按 `.gitignore` 排除
+> `vendor/`、`storage/`、`.env`、数据库导出与上传文件，不含任何密钥或用户数据。

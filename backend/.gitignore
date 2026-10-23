@@ -1,0 +1,12 @@
+/vendor/
+/node_modules/
+/.env
+*.log
+/storage/
+/bootstrap/cache/
+/public/data/
+/public/data_chunk/
+/public/temp/
+*.sql
+deploy-*.txt
+.DS_Store

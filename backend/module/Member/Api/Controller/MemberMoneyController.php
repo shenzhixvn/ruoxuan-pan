@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Api\Controller; use ModStart\Core\Input\InputPackage; use ModStart\Core\Input\Response; use ModStart\Module\ModuleBaseController; use Module\Member\Auth\MemberUser; use Module\Member\Support\MemberLoginCheck; use Module\Member\Util\MemberMoneyUtil; class MemberMoneyController extends ModuleBaseController implements MemberLoginCheck { public function get() { return Response::generateSuccessData(array('total' => MemberMoneyUtil::getTotal(MemberUser::id()))); } public function log() { goto uHYTc; qvZZ3: $XVfYs = $d161V->getTrimString('type'); goto Lh9uO; Lh9uO: switch ($XVfYs) { case 'income': $N4xzJ['whereOperate'] = array('change', '>', '0'); break; case 'payout': $N4xzJ['whereOperate'] = array('change', '<', '0'); break; } goto klMIW; qFDif: $N4xzJ = array(); goto PSmPS; uHYTc: $bCc5F = InputPackage::buildFromInput(); goto qFDif; BlHx4: return Response::generateSuccessPaginate($bCc5F->getPage(), $bCc5F->getPageSize(), $JEho_); goto djm72; PSmPS: $d161V = $bCc5F->getSearchInput(); goto qvZZ3; klMIW: $JEho_ = MemberMoneyUtil::paginateLog(MemberUser::id(), $bCc5F->getPage(), $bCc5F->getPageSize(), $N4xzJ); goto BlHx4; djm72: } }

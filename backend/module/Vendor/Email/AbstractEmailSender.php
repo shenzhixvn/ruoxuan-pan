@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Email; use Illuminate\Support\Facades\View; use ModStart\Core\Exception\BizException; use ModStart\Core\Input\Response; abstract class AbstractEmailSender { protected abstract function sendExecute($H6Tt_, $zoBzL, $XAnni, $Zr532, $e1tw_ = array()); public function send($H6Tt_, $XAnni, $nijpt, $ke9I4 = array(), $zoBzL = null, $e1tw_ = array(), $oZyI7 = null) { goto BtHg6; ifNhm: if (null === $zoBzL) { $zoBzL = $H6Tt_; } goto YPqTz; BtHg6: $ye7R5 = $nijpt; goto d2MdY; f3vql: if (!view()->exists($ye7R5)) { throw new \Exception('mail view not found : ' . $ye7R5); } goto ifNhm; d2MdY: if (!view()->exists($ye7R5)) { $ye7R5 = 'theme.' . modstart_config()->getWithEnv('siteTemplate', 'default') . '.mail.' . $nijpt; if (!view()->exists($ye7R5)) { $ye7R5 = 'theme.default.mail.' . $nijpt; if (!view()->exists($ye7R5)) { if ($oZyI7) { $ye7R5 = 'module::' . $oZyI7 . '.View.mail.' . $nijpt; } if (!view()->exists($ye7R5)) { $ye7R5 = 'module::Vendor.View.mail.' . $nijpt; } } } } goto f3vql; K_brX: try { goto KcZl0; KcZl0: $ZY4Vx = $this->sendExecute($H6Tt_, $zoBzL, $XAnni, $Zr532, $e1tw_); goto VKIHX; VKIHX: BizException::throwsIfResponseError($ZY4Vx); goto L7pGC; L7pGC: return Response::generateSuccess(); goto V080w; V080w: } catch (BizException $AKFGr) { return Response::generateError($AKFGr->getMessage()); } goto x8QQE; YPqTz: $Zr532 = View::make($ye7R5, $ke9I4)->render(); goto K_brX; x8QQE: } }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Admin\Controller; use Illuminate\Routing\Controller; use ModStart\Core\Input\Response; class WidgetIconController extends Controller { public static $PermitMethodMap = array('*' => '*'); public function index() { goto DVqLm; BSeDu: $vT0cL = array(); goto h8iW2; sNYCh: return Response::jsonSuccessData($h0bf4); goto ovY4m; kwbVJ: $h0bf4[] = array('title' => 'Font Awesome', 'list' => $vT0cL); goto sNYCh; h8iW2: if (file_exists($QZEpK = public_path('asset/font-awesome/css/font-awesome.min.css')) && ($Zr532 = file_get_contents($QZEpK))) { preg_match_all('/\\.fa-([a-z0-9\\-]+):before/', $Zr532, $DykYw); $vT0cL = array_map(function ($r3C0p) { return array('title' => $r3C0p, 'cls' => "fa fa-{$r3C0p}"); }, $DykYw[1]); } goto kwbVJ; sBm76: $h0bf4[] = array('title' => '内置图标', 'list' => $vT0cL); goto BSeDu; doNIK: if (file_exists($QZEpK = public_path('asset/vendor/iconfont/iconfont.css')) && ($Zr532 = file_get_contents($QZEpK))) { preg_match_all('/\\.icon-([a-z0-9\\-]+):before/', $Zr532, $DykYw); $vT0cL = array_map(function ($r3C0p) { return array('title' => $r3C0p, 'cls' => "iconfont icon-{$r3C0p}"); }, $DykYw[1]); } goto sBm76; LD1ao: $vT0cL = array(); goto doNIK; DVqLm: $h0bf4 = array(); goto LD1ao; ovY4m: } }

@@ -1,0 +1,21 @@
+
+
+测试环境：Apache + MySQL5.6 + PHP7.0
+
+安装教程：
+
+1、上传解压
+
+2、配置laravel5伪静态规则
+
+3、配置数据库文件.env     运行目录设置为public
+
+4、导入数据库文件  xydai.sql
+
+5、安装PHP扩展exif、fileinfo
+
+6、PHP的php.ini文件里面的;always_populate_raw_post_data = -1 删除前面的分号“;” (这一步可以不设置)
+
+7、从PHP禁用函数中  删除shell_exec、proc_open、putenv这三个PHP函数
+
+9、后台登录地址：http://你的域名/dome  	后台账号：admin     密码：xydai.cn

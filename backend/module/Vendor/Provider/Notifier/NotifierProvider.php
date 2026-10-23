@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Provider\Notifier; use Module\Vendor\Util\NoneLoginOperateUtil; class NotifierProvider { public static function all() { goto r0Jkh; nIkmq: if (null === $BM1qP) { goto gYlqb; Tefn7: $BM1qP = array_map(function ($eJ6_5) { return app($eJ6_5); }, array_unique($X6Zh5)); goto u6laf; gYlqb: $X6Zh5 = config('NotifierProviders'); goto D_B1x; D_B1x: if (empty($X6Zh5)) { $X6Zh5 = array(DefaultNotifierProvider::class); } goto Tefn7; u6laf: } goto i6IPg; i6IPg: return $BM1qP; goto Ccyvb; r0Jkh: static $BM1qP = null; goto nIkmq; Ccyvb: } public static function notify($NAiTX, $r3C0p, $Zr532, $e1tw_ = array()) { foreach (self::all() as $A311f) { $A311f->notify($NAiTX, $r3C0p, $Zr532, $e1tw_); } } public static function notifyProcess($NAiTX, $r3C0p, $Zr532, $peN9_, $f4dET = array()) { self::notify($NAiTX, $r3C0p, $Zr532, array_merge($f4dET, array('processUrl' => $peN9_))); } public static function notifyNoneLoginOperateProcessUrl($NAiTX, $r3C0p, $Zr532, $EZGxz, $f4dET = array()) { $peN9_ = NoneLoginOperateUtil::generateUrl($EZGxz, $f4dET); self::notifyProcess($NAiTX, $r3C0p, $Zr532, $peN9_); } }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Middleware; use ModStart\Core\Exception\BizException; use ModStart\Core\Input\InputPackage; use ModStart\Core\Input\Request; use ModStart\Core\Util\TimeUtil; use Module\Vendor\Util\NoneLoginOperateUtil; class NoneLoginOperateAuthMiddleware { public function handle($eZe1Y, \Closure $qNEDM) { goto PbUET; PbUET: $Ujk6Z = config('env.APP_KEY'); goto WDkEn; EaMrn: return $qNEDM($eZe1Y); goto AMIU8; Y6GNx: BizException::throwsIf('sign错误', $CdNul != $gegFI); goto EaMrn; WDkEn: BizException::throwsIfEmpty('APP_KEY为空', $Ujk6Z); goto pnFL3; ajNbi: BizException::throwsIfEmpty('nonce为空', $yrYxY); goto gqwkm; R4BOJ: $CdNul = $bCc5F->getTrimString('sign'); goto ajNbi; pnFL3: $bCc5F = InputPackage::buildFromInput(); goto m_37N; IGhtu: $yrYxY = $bCc5F->getTrimString('nonce'); goto R4BOJ; gqwkm: BizException::throwsIfEmpty('sign为空', $CdNul); goto aVIqi; F4rg_: BizException::throwsIf('已超时效（操作时间显示为24小时内，timestamp=' . time() . '）', !($OB4R9 <= time() && $OB4R9 > time() - TimeUtil::PERIOD_DAY)); goto IGhtu; aVIqi: $gegFI = NoneLoginOperateUtil::sign(Request::path(), $yrYxY, $OB4R9, $bCc5F->getTrimString('param')); goto Y6GNx; m_37N: $OB4R9 = $bCc5F->getInteger('timestamp'); goto F4rg_; AMIU8: } }

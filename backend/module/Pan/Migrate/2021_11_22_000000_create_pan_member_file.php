@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ use Illuminate\Database\Migrations\Migration; use Illuminate\Database\Schema\Blueprint; class CreatePanMemberFile extends Migration { public function up() { Schema::create('pan_member_file', function (Blueprint $ln7i8) { $ln7i8->bigIncrements('id'); $ln7i8->timestamps(); $ln7i8->integer('memberUserId')->nullable()->comment(''); $ln7i8->bigInteger('pid')->nullable()->comment(''); $ln7i8->bigInteger('fileId')->nullable()->comment(''); $ln7i8->string('fileName', 200)->nullable()->comment(''); $ln7i8->string('ext', 20)->nullable()->comment(''); $ln7i8->string('type', 10)->nullable()->comment(''); $ln7i8->integer('size')->nullable()->comment(''); $ln7i8->tinyInteger('isDir')->nullable()->comment(''); $ln7i8->dateTime('uploadTime')->nullable()->comment(''); $ln7i8->dateTime('deleteTime')->nullable()->comment(''); $ln7i8->bigInteger('deleteBatchNum')->nullable()->comment(''); $ln7i8->tinyInteger('isDeleted')->nullable()->comment(''); $ln7i8->index(array('memberUserId')); $ln7i8->unique(array('pid', 'fileName')); $ln7i8->index(array('deleteBatchNum')); }); } public function down() { } }

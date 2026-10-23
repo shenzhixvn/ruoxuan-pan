@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Admin\Controller; use Illuminate\Routing\Controller; use ModStart\Admin\Concern\HasAdminQuickCRUD; use ModStart\Admin\Layout\AdminCRUDBuilder; use ModStart\Field\AbstractField; use ModStart\Field\AutoRenderedFieldValue; use ModStart\Support\Concern\HasFields; use Module\Member\Util\MemberCmsUtil; class MemberMoneyLogController extends Controller { use HasAdminQuickCRUD; protected function crud(AdminCRUDBuilder $xD3VI) { $xD3VI->init('member_money_log')->field(function ($xD3VI) { $xD3VI->id('id', 'ID'); $xD3VI->display('memberUserId', '用户')->hookRendering(function (AbstractField $gHm4b, $nivms, $ltyOC) { return MemberCmsUtil::showFromId($nivms->memberUserId); }); $xD3VI->display('change', '金额')->hookRendering(function (AbstractField $gHm4b, $nivms, $ltyOC) { return AutoRenderedFieldValue::make($nivms->change > 0 ? '<span class="ub-text-success">+' . $nivms->change . '</span>' : '<span class="ub-text-danger">' . $nivms->change . '</span>'); }); $xD3VI->text('remark', '备注'); $xD3VI->display('created_at', L('Created At')); })->title('用户钱包流水')->canAdd(false)->canEdit(false)->canDelete(false); } }

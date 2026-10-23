@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Converter; use ModStart\Core\Dao\ModelUtil; use Module\Vendor\Html\HtmlConverterInterceptor; class AtMemberHtmlInterceptor implements HtmlConverterInterceptor { public function convert($Mj1_5) { goto TIP26; HzY4X: if (empty($kGjSQ)) { return $Mj1_5; } goto KYa10; QAA4n: if (empty($DykYw[1])) { return $Mj1_5; } goto Xj6pi; M3ov5: return $Mj1_5; goto RIkU7; P0juy: foreach ($unS1E as $fL6I8 => $tKAXx) { goto T0HFm; ME77p: $NQUpI = str_replace('{id}', $UoUOm[$tKAXx]['id'], '/member/{id}'); goto fUjbY; T0HFm: if (empty($UoUOm[$tKAXx])) { continue; } goto ME77p; fUjbY: $Mj1_5 = str_replace($fL6I8, '<a href="' . $NQUpI . '" target="_blank">@' . $UoUOm[$tKAXx]['username'] . '</a>: ', $Mj1_5); goto U4R7m; U4R7m: } goto M3ov5; ZY1oO: foreach ($DykYw[1] as $ltyOC => $tKAXx) { goto HWC2t; nf45S: $unS1E[$DykYw[0][$ltyOC]] = $tKAXx; goto rDxZp; X17Mg: if (empty($tKAXx)) { continue; } goto nf45S; HWC2t: $tKAXx = trim($tKAXx); goto X17Mg; rDxZp: } goto WmAQX; TIP26: preg_match_all('/@(.*?):/', $Mj1_5, $DykYw); goto QAA4n; WmAQX: if (empty($unS1E)) { return $Mj1_5; } goto n8MrN; Ra69a: foreach ($kGjSQ as $jncMx) { $UoUOm[$jncMx['username']] = $jncMx; } goto P0juy; Xj6pi: $unS1E = array(); goto ZY1oO; n8MrN: $kGjSQ = ModelUtil::model('member_user')->whereIn('username', array_values($unS1E))->get()->toArray(); goto HzY4X; KYa10: $UoUOm = array(); goto Ra69a; RIkU7: } }

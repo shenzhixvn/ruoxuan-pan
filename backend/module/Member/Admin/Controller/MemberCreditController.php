@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Admin\Controller; use Illuminate\Routing\Controller; use ModStart\Admin\Auth\AdminPermission; use ModStart\Admin\Layout\AdminDialogPage; use ModStart\Core\Dao\ModelUtil; use ModStart\Core\Input\InputPackage; use ModStart\Core\Input\Response; use ModStart\Core\Util\CRUDUtil; use ModStart\Form\Form; use Module\Member\Util\MemberCreditUtil; class MemberCreditController extends Controller { public static $PermitMethodMap = array('*' => '\\Module\\Member\\Admin\\Controller\\MemberController@index'); public function charge(AdminDialogPage $QDBmO) { goto eUr28; Q3lrA: $y31_Y->showSubmit(false)->showReset(false); goto PB_sX; U9mm2: $y31_Y->display('_total', '总积分')->value(MemberCreditUtil::getTotal($wUd3t))->addable(true); goto VwDdT; PB_sX: return $QDBmO->pageTitle('积分充值')->body($y31_Y)->handleForm($y31_Y, function (Form $y31_Y) use($wUd3t) { AdminPermission::demoCheck(); $rSQEM = $y31_Y->dataForming(); ModelUtil::transactionBegin(); MemberCreditUtil::change($wUd3t, $rSQEM['change'], $rSQEM['remark']); ModelUtil::transactionCommit(); return Response::redirect(CRUDUtil::jsDialogCloseAndParentRefresh()); }); goto U4sVp; VwDdT: $y31_Y->number('change', '积分变更')->help('负数表示减少')->required(); goto eCKxD; eCKxD: $y31_Y->text('remark', '说明')->defaultValue('系统变更')->required(); goto Q3lrA; Y91PW: $y31_Y = Form::make(''); goto U9mm2; eUr28: $wUd3t = InputPackage::buildFromInput()->getInteger('memberUserId'); goto Y91PW; U4sVp: } }

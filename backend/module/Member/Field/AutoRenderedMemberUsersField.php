@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Field; use ModStart\Core\Assets\AssetsUtil; use ModStart\Core\Util\ArrayUtil; use ModStart\Field\AutoRenderedFieldValue; use ModStart\Field\Type\FieldRenderMode; use Module\Member\Util\MemberUtil; class AutoRenderedMemberUsersField { public static function make($HysHU, $e1tw_) { switch ($HysHU) { case FieldRenderMode::GRID: case FieldRenderMode::DETAIL: $Qfy2m = array_map(function ($nivms) { return '<span class="ub-tag sm">' . htmlspecialchars($nivms) . '</span>'; }, MemberUtil::listViewName($e1tw_['memberUserIds'])); return AutoRenderedFieldValue::make(join(' ', $Qfy2m)); case FieldRenderMode::FORM: goto xgcQE; VqfVX: $kGjSQ = array_map(function ($nivms) { return array('value' => intval($nivms['id']), 'name' => MemberUtil::viewName($nivms), 'avatar' => AssetsUtil::fixOrDefault($nivms['avatar'], 'asset/image/avatar.png')); }, $kGjSQ); goto ZfhWP; DtDdp: $SWJOD = ArrayUtil::flatItemsByKey($kGjSQ, 'id'); goto VqfVX; ZfhWP: return AutoRenderedFieldValue::makeView('module::Member.View.field.memberUsers', array('memberUserIds' => $SWJOD, 'memberUsers' => $kGjSQ, 'param' => $e1tw_)); goto CY10h; xgcQE: $kGjSQ = MemberUtil::listUsers($e1tw_['memberUserIds']); goto DtDdp; CY10h: } } }

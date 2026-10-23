@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Command; use Illuminate\Console\Command; use ModStart\Core\Dao\ModelUtil; abstract class BaseDumpDemoDataCommand extends Command { protected $signature = 'dump-demo-data'; protected function buildInsert() { goto LPRbb; LPRbb: $cF6H0 = array(); goto hLPi9; hLPi9: $DfXTE = func_get_args(); goto sQtDk; sQtDk: foreach ($DfXTE as $ln7i8) { if (is_array($ln7i8)) { goto fpso4; daYlY: if ($afqL4) { $cF6H0[$ln7i8[0]] = array_filter($cF6H0[$ln7i8[0]], $afqL4); } goto s8Sd6; R8b1c: $afqL4 = isset($ln7i8[2]) ? $ln7i8[2] : null; goto daYlY; fpso4: $cF6H0[$ln7i8[0]] = ModelUtil::all($ln7i8[0], array(), $ln7i8[1]); goto R8b1c; s8Sd6: } else { $cF6H0[$ln7i8] = ModelUtil::all($ln7i8); } } goto ekorf; ekorf: return $cF6H0; goto KJ1Xv; KJ1Xv: } protected function buildUpdate() { goto oJH8v; QDLX4: foreach ($TjAZq as $esH7S) { $E_C3o[] = array('table' => $esH7S[0], 'where' => $esH7S[1], 'update' => ModelUtil::get($esH7S[0], $esH7S[1], $esH7S[2])); } goto P9Cuc; oJH8v: $TjAZq = func_get_args(); goto rreOp; rreOp: $E_C3o = array(); goto QDLX4; P9Cuc: return $E_C3o; goto AvkaJ; AvkaJ: } protected function buildDump($rSQEM) { goto TkNnD; Q3z6b: file_put_contents($QZEpK = public_path('data_demo/data.php'), '<' . '?php return ' . var_export($rSQEM, true) . ';'); goto QdnIl; TkNnD: @mkdir(public_path('data_demo')); goto Q3z6b; QdnIl: $this->info("dump success -> {$QZEpK}"); goto zrCWa; zrCWa: } public abstract function handle(); }

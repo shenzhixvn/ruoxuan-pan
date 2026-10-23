@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Pan\Util; class DiskFileUtil { private static $defaultExtension = array('image' => 'jpg,gif,png,jpeg', 'video' => 'mp4,mkv', 'doc' => 'doc,docx,ppt,pptx,xls,xlsx,pdf', 'other' => 'js,txt,json'); public static function type($gr6Qq) { if ($gr6Qq['isDir']) { return 'dir'; } else { return $gr6Qq['type']; } } public static function getTypeByExt($IagPP) { foreach (self::$defaultExtension as $y0FoF => $tG00J) { $J6K3H = self::getExtensions($y0FoF); if (in_array($IagPP, $J6K3H)) { return $y0FoF; } } return 'other'; } public static function allExtensions() { goto mjp3x; OfyEi: foreach (self::$defaultExtension as $y0FoF => $tG00J) { $J6K3H = array_merge($J6K3H, self::getExtensions($y0FoF)); } goto K3Hfv; mjp3x: $J6K3H = array(); goto OfyEi; K3Hfv: return $J6K3H; goto kWmWC; kWmWC: } public static function getExtensions($nSiYr) { goto GZwjm; GZwjm: $l3YwR = 'Pan_FileExtension_' . $nSiYr; goto G8bVc; G8bVc: $gSrPC = modstart_config($l3YwR); goto aAvcK; aAvcK: if (empty($gSrPC)) { $gSrPC = self::$defaultExtension[$nSiYr]; } goto FEr3r; FEr3r: return explode(',', $gSrPC); goto Zu583; Zu583: } public static function getDefaultExtension($nSiYr) { return self::$defaultExtension[$nSiYr]; } }

@@ -1,0 +1,16 @@
+{
+  "name": "Pan",
+  "title": "网盘系统",
+  "require": [
+    "Vendor:>=2.0.0",
+    "Member:>=1.9.0"
+  ],
+  "version": "1.1.0",
+  "modstartVersion": ">=3.5.0",
+  "author": "ModStart",
+  "description": "提供基础的网盘功能",
+  "providers": [
+  ],
+  "config": {
+  }
+}

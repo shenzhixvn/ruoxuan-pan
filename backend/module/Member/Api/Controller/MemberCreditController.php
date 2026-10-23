@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Api\Controller; use ModStart\Core\Input\InputPackage; use ModStart\Core\Input\Response; use ModStart\Module\ModuleBaseController; use Module\Member\Auth\MemberUser; use Module\Member\Support\MemberLoginCheck; use Module\Member\Util\MemberCreditUtil; class MemberCreditController extends ModuleBaseController implements MemberLoginCheck { public function get() { return Response::generateSuccessData(array('total' => MemberCreditUtil::getTotal(MemberUser::id()))); } public function log() { goto H340D; IdIbn: $N4xzJ = array(); goto GG_Ut; xDJul: $XVfYs = $d161V->getTrimString('type'); goto IU6Sd; H340D: $bCc5F = InputPackage::buildFromInput(); goto IdIbn; bURDf: $JEho_ = MemberCreditUtil::paginateLog(MemberUser::id(), $bCc5F->getPage(), $bCc5F->getPageSize(), $N4xzJ); goto fVR09; GG_Ut: $d161V = $bCc5F->getJsonAsInput('search'); goto xDJul; IU6Sd: switch ($XVfYs) { case 'income': $N4xzJ['whereOperate'] = array('change', '>', '0'); break; case 'payout': $N4xzJ['whereOperate'] = array('change', '<', '0'); break; } goto bURDf; fVR09: return Response::generateSuccessPaginate($bCc5F->getPage(), $bCc5F->getPageSize(), $JEho_); goto g8bRR; g8bRR: } }

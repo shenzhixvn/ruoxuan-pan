@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Listener; use ModStart\Core\Dao\ModelUtil; use Module\Member\Constant\PayConstant; use Module\Member\Util\MemberUtil; use Module\Member\Util\MemberVipUtil; use Module\PayCenter\Events\OrderPayedEvent; use Module\Vendor\Type\OrderStatus; class MemberVipPayListener { public function onOrderPayed(OrderPayedEvent $ru01U) { goto IY23Q; lO5c2: $eKK7F = $ru01U->bizId; goto c2OUl; c2OUl: switch ($NAiTX) { case PayConstant::MEMBER_VIP: goto DYGLY; t3xSc: if (empty($aGc11)) { return; } goto A4CNM; qL5oV: MemberUtil::update($aGc11['memberUserId'], $eu3uv); goto RZ0wg; DYGLY: $aGc11 = ModelUtil::get('member_vip_order', $eKK7F); goto t3xSc; yCbns: $V3RE1 = MemberVipUtil::get($aGc11['vipId']); goto DqwkA; FHHcB: $eu3uv['vipId'] = $aGc11['vipId']; goto gzm_6; Ob0g8: $eu3uv = array(); goto FHHcB; RZ0wg: break; goto FejBM; gzm_6: $eu3uv['vipExpire'] = $aGc11['expire']; goto qL5oV; A4CNM: $jncMx = MemberUtil::get($aGc11['memberUserId']); goto yCbns; DqwkA: ModelUtil::update('member_vip_order', array('id' => $eKK7F), array('status' => OrderStatus::COMPLETED)); goto Ob0g8; FejBM: } goto sLPip; IY23Q: $NAiTX = $ru01U->biz; goto lO5c2; sLPip: } public function subscribe($k4bcO) { $k4bcO->listen(OrderPayedEvent::class, '\\Module\\Member\\Listener\\MemberVipPayListener@onOrderPayed'); } }

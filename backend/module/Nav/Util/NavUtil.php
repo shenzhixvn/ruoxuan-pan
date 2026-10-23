@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Nav\Util; use Illuminate\Support\Facades\Cache; use ModStart\Core\Dao\ModelUtil; use ModStart\Core\Util\TreeUtil; use Module\Nav\Type\NavPosition; class NavUtil { const CACHE_KEY_PREFIX = 'nav:'; public static function add($tJ9gP, $Fbuvw, $TY7jj) { $qBFI3 = intval(ModelUtil::max('nav', 'sort')) + 1; ModelUtil::insert('nav', array('position' => $tJ9gP, 'name' => $Fbuvw, 'link' => $TY7jj, 'sort' => $qBFI3)); } public static function listByPosition($tJ9gP = 'header') { $Ytxy8 = TreeUtil::modelToTree('nav', array('position' => 'position', 'name' => 'name', 'openType' => 'openType', 'link' => 'link'), 'id', 'pid', 'sort', array('enable' => true)); return array_filter($Ytxy8, function ($nivms) use($tJ9gP) { return $nivms['position'] == $tJ9gP; }); } public static function listByPositionWithCache($tJ9gP = 'header', $nUMaP = 600) { return Cache::remember(self::CACHE_KEY_PREFIX . $tJ9gP, $nUMaP, function () use($tJ9gP) { return self::listByPosition($tJ9gP); }); } public static function hasData($tJ9gP = 'header') { $VtHSF = self::listByPositionWithCache($tJ9gP); return !empty($VtHSF); } public static function clearCache() { foreach (NavPosition::getList() as $y0FoF => $DNpFv) { Cache::forget(self::CACHE_KEY_PREFIX . $y0FoF); } } }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Member\Admin\Controller; use Illuminate\Routing\Controller; use ModStart\Admin\Auth\AdminPermission; use ModStart\Admin\Layout\AdminDialogPage; use ModStart\Core\Dao\ModelUtil; use ModStart\Core\Input\InputPackage; use ModStart\Core\Input\Response; use ModStart\Core\Util\CRUDUtil; use ModStart\Form\Form; use Module\Member\Util\MemberMoneyUtil; class MemberMoneyController extends Controller { public static $PermitMethodMap = array('*' => '\\Module\\Member\\Admin\\Controller\\MemberController@index'); public function charge(AdminDialogPage $QDBmO) { goto KdUof; ecK9U: $y31_Y->decimal('change', '金额')->help('负数表示减少')->required(); goto WC57S; OB88i: $y31_Y->showSubmit(false)->showReset(false); goto wWJIj; SCfss: $y31_Y = Form::make(''); goto sn_uB; sn_uB: $y31_Y->display('_total', '余额')->value(MemberMoneyUtil::getTotal($wUd3t))->addable(true); goto ecK9U; wWJIj: return $QDBmO->pageTitle('积分充值')->body($y31_Y)->handleForm($y31_Y, function (Form $y31_Y) use($wUd3t) { AdminPermission::demoCheck(); $rSQEM = $y31_Y->dataForming(); ModelUtil::transactionBegin(); MemberMoneyUtil::change($wUd3t, $rSQEM['change'], $rSQEM['remark']); ModelUtil::transactionCommit(); return Response::redirect(CRUDUtil::jsDialogCloseAndParentRefresh()); }); goto HVkm4; WC57S: $y31_Y->text('remark', '说明')->defaultValue('系统变更')->required(); goto OB88i; KdUof: $wUd3t = InputPackage::buildFromInput()->getInteger('memberUserId'); goto SCfss; HVkm4: } }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ use Illuminate\Database\Schema\Blueprint; use Illuminate\Database\Migrations\Migration; class CreateMemberUser extends Migration { public function up() { Schema::create('member_user', function (Blueprint $ln7i8) { $ln7i8->increments('id'); $ln7i8->timestamps(); $ln7i8->string('username', 50)->nullable()->comment('用户名'); $ln7i8->string('phone', 20)->nullable()->comment('手机'); $ln7i8->string('email', 200)->nullable()->comment('邮箱'); $ln7i8->char('password', 32)->nullable()->comment('密码'); $ln7i8->char('passwordSalt', 16)->nullable()->comment('密码Salt'); $ln7i8->timestamp('lastLoginTime')->nullable()->comment('上次登录时间'); $ln7i8->string('lastLoginIp', 20)->nullable()->comment('上次登录Ip'); $ln7i8->boolean('phoneVerified')->nullable()->comment('手机已验证'); $ln7i8->boolean('emailVerified')->nullable()->comment('邮箱已验证'); $ln7i8->string('avatar', 100)->nullable()->comment('头像(小)'); $ln7i8->string('avatarMedium', 100)->nullable()->comment('头像(中)'); $ln7i8->string('avatarBig', 100)->nullable()->comment('头像(大)'); $ln7i8->tinyInteger('gender')->nullable()->comment('性别'); $ln7i8->string('realname', 20)->nullable()->comment('真实姓名'); $ln7i8->string('signature', 200)->nullable()->comment('个性签名'); $ln7i8->index('username'); $ln7i8->index('phone'); $ln7i8->index('email'); }); } public function down() { } }

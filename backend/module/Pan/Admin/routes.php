@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ goto VX7km; VX7km: $router->match(array('get', 'post'), 'pan/config', 'ConfigController@index'); goto CMRnr; GAJIh: $router->match(array('get', 'post'), 'pan/member_file/delete', 'PanMemberFileController@delete'); goto Zmx1h; hqonq: $router->match(array('get', 'post'), 'pan/member_file/edit', 'PanMemberFileController@edit'); goto GAJIh; IRjNM: $router->match(array('get', 'post'), 'pan/file', 'PanFileController@index'); goto CBCJ5; CMRnr: $router->match(array('get', 'post'), 'pan/member', 'PanMemberController@index'); goto IRjNM; eH5wl: $router->match(array('get', 'post'), 'pan/member_file', 'PanMemberFileController@index'); goto gwqeg; c8LBV: $router->match(array('get', 'post'), 'pan/file/edit', 'PanFileController@edit'); goto ab4Sl; gwqeg: $router->match(array('get', 'post'), 'pan/member_file/add', 'PanMemberFileController@add'); goto hqonq; ab4Sl: $router->match(array('get', 'post'), 'pan/file/delete', 'PanFileController@delete'); goto EF6x8; EF6x8: $router->match(array('get', 'post'), 'pan/file/show', 'PanFileController@show'); goto eH5wl; CBCJ5: $router->match(array('get', 'post'), 'pan/file/add', 'PanFileController@add'); goto c8LBV; Zmx1h: $router->match(array('get', 'post'), 'pan/member_file/show', 'PanMemberFileController@show');

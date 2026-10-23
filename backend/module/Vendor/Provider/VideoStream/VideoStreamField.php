@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Provider\VideoStream; use ModStart\Field\AbstractField; use ModStart\Support\Manager\FieldManager; class VideoStreamField extends AbstractField { const SCOPE_ADMIN = 'admin'; const SCOPE_MEMBER = 'member'; protected $view = 'module::Vendor.View.field.videoStream'; protected $value = array('driver' => null, 'name' => null, 'path' => null); protected function setup() { parent::setup(); $this->addVariables(array('scope' => self::SCOPE_ADMIN)); } public function scope($wZoVf = null) { goto oawie; pJDGC: return $this; goto j0UTH; VfHUR: $this->addVariables(array('scope' => $wZoVf)); goto pJDGC; oawie: if (null == $wZoVf) { return $this->getVariable('scope'); } goto VfHUR; j0UTH: } public function unserializeValue($gSrPC, AbstractField $gHm4b) { goto SS9xL; Dn2eZ: if (empty($gSrPC['path'])) { $gSrPC['path'] = null; } goto W55j1; SS9xL: $gSrPC = json_decode($gSrPC, true); goto ma6O9; ma6O9: if (empty($gSrPC['driver'])) { $gSrPC['driver'] = null; } goto NeQbs; W55j1: return $gSrPC; goto qef3X; NeQbs: if (empty($gSrPC['name'])) { $gSrPC['name'] = null; } goto Dn2eZ; qef3X: } public function serializeValue($gSrPC, $us8Lk) { return json_encode($gSrPC, JSON_UNESCAPED_UNICODE); } public function prepareInput($gSrPC, $us8Lk) { return json_decode($gSrPC, true); } public static function register() { FieldManager::extend('videoStream', VideoStreamField::class); } }

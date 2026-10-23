@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Vendor\Admin\Config; class AdminWidgetLink { private static $list = array(); public static function register($OJJO1) { self::$list[] = $OJJO1; } public static function get() { goto qPxvk; L1DiT: return array_values($C_QCr); goto RyAhP; FYFKk: foreach (self::$list as $nivms) { if ($nivms instanceof \Closure) { $Xom2X = call_user_func($nivms); if (!empty($Xom2X)) { if (isset($Xom2X['title']) && isset($Xom2X['list'])) { $nIXsj[] = $Xom2X; } else { $nIXsj = array_merge($nIXsj, $Xom2X); } } } else { $nIXsj[] = $nivms; } } goto kJd97; kJd97: $C_QCr = array(); goto glwF8; qPxvk: $nIXsj = array(); goto FYFKk; glwF8: foreach ($nIXsj as $y0FoF => $tG00J) { if (isset($C_QCr[$tG00J['title']])) { $C_QCr[$tG00J['title']]['list'] = array_merge($C_QCr[$tG00J['title']]['list'], $tG00J['list']); } else { $C_QCr[$tG00J['title']] = $tG00J; } } goto L1DiT; RyAhP: } public static function build($v8fKv, $FHmAb) { if (empty($FHmAb)) { return null; } return array('title' => $v8fKv, 'list' => array_filter(array_map(function ($nivms) { return $nivms ? array('title' => $nivms[0], 'link' => $nivms[1]) : null; }, $FHmAb))); } }

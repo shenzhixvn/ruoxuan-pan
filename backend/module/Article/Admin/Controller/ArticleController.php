@@ -1,0 +1,7 @@
+<?php
+/**
+ * ------------------------ 
+ *  版权所有  www.bygoukai.com
+ *  商业版本请购买正版授权使用
+ * ------------------------
+*/ namespace Module\Article\Admin\Controller; use Illuminate\Routing\Controller; use ModStart\Admin\Concern\HasAdminQuickCRUD; use ModStart\Admin\Layout\AdminCRUDBuilder; use ModStart\Form\Form; use ModStart\Grid\GridFilter; use ModStart\Support\Concern\HasFields; use Module\Article\Type\ArticlePosition; use Module\Article\Util\ArticleUtil; class ArticleController extends Controller { use HasAdminQuickCRUD; protected function crud(AdminCRUDBuilder $xD3VI) { $xD3VI->init('article')->field(function ($xD3VI) { $xD3VI->id('id', 'ID'); $xD3VI->select('position', '位置')->optionType(ArticlePosition::class); $xD3VI->text('title', '名称'); $xD3VI->text('alias', '别名')->help('默认留空，可通过链接 /article/别名 访问'); $xD3VI->richHtml('content', '内容')->listable(false); $xD3VI->display('created_at', L('Created At'))->listable(false); $xD3VI->display('updated_at', L('Updated At'))->listable(false); })->gridFilter(function (GridFilter $F0FXA) { $F0FXA->eq('position', '位置')->select(ArticlePosition::class); $F0FXA->like('title', L('Title')); })->title('单页文章')->hookSaved(function (Form $y31_Y) { ArticleUtil::clearCache(); }); } }
